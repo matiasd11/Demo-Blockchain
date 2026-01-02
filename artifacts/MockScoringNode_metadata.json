@@ -6,6 +6,31 @@
 	"output": {
 		"abi": [
 			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "requestId",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "coordX",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "coordY",
+						"type": "uint256"
+					}
+				],
+				"name": "DebugRequestId",
+				"type": "event"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "bytes32",
@@ -62,11 +87,11 @@
 	},
 	"sources": {
 		"contracts/MockNode.sol": {
-			"keccak256": "0xab8288190f3f5b3ac753f7198184a4ef91f2fe61ee94544e704158fc7ddd2f1e",
+			"keccak256": "0xb9abbc8d7b1bd777151a66fc3a4a5b356b7249144a5d9a67f32d8677207a042e",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://65ccb3fa1bbfcc2843d391948c9f52998a1b37be32ac6617310e4799ce1a05c0",
-				"dweb:/ipfs/QmR7Pb2BzSJbiv7dSKy6Dwc6y6Kup7uyR1jbhiBrjYoaTG"
+				"bzz-raw://e2de3e1edb75bf873bcb9877159ec5e4ccf8da05c4516f584d468b528bc23be7",
+				"dweb:/ipfs/QmctKTVKSRMjhfAACooFS6a36aBwax2T1PUUkCyBTocztc"
 			]
 		}
 	},

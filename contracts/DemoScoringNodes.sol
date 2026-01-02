@@ -50,7 +50,7 @@ contract DemoScoringNodes is IMainNode{
 
         // Llamar a cada nodo (asincrónico - no espera respuesta)
         for (uint256 i = 0; i < _nodes.length; i++) {
-            INodeScoring(_nodes[i]).requestScore(requestId, _coordX, _coordY, address(this));
+            INodeScoring(_nodes[i]).requestScore(requestId, _coordX, _coordY,address(this));
         }
 
         emit ScoringRequested(requestId, _coordX, _coordY, _nodes.length);

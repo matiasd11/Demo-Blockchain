@@ -37,7 +37,7 @@
 		},
 		"gasEstimates": null,
 		"methodIdentifiers": {
-			"requestScore(bytes32,uint256,uint256)": "35434170"
+			"requestScore(bytes32,uint256,uint256,address)": "88d80823"
 		}
 	},
 	"abi": [
@@ -57,6 +57,11 @@
 					"internalType": "uint256",
 					"name": "_coordY",
 					"type": "uint256"
+				},
+				{
+					"internalType": "address",
+					"name": "_mainNode",
+					"type": "address"
 				}
 			],
 			"name": "requestScore",

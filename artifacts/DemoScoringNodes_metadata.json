@@ -295,11 +295,11 @@
 	},
 	"sources": {
 		"contracts/DemoScoringNodes.sol": {
-			"keccak256": "0xaafaa898d74f74775b2e54e971953b90338cae8b3f219a749bbcfab23a77342a",
+			"keccak256": "0x90177f8290c290d160ab13b370c0bf42bfc00582a845ae34bcd9ccc5f6d00b01",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://3cf5f8d920a514dc5022c0688dd4ee252c971e65010a02135e8853122e452a56",
-				"dweb:/ipfs/Qme88PWKvmuSQBnXNRwJEzEmsSHwvwTg3ZPeHeCuxa5gUn"
+				"bzz-raw://85e128f7774c2aedf0ce71aa216d67e26163560ec58aa395accb3223b040be94",
+				"dweb:/ipfs/Qma9uPRLd4jGHthwrpt4rqQrxuyzYw7AkS7LZbXn2Zuw4D"
 			]
 		}
 	},

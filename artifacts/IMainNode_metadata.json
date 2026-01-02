@@ -37,7 +37,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/DemoScoringNodes.sol": "IMainNode"
+			"contracts/MockNode.sol": "IMainNode"
 		},
 		"evmVersion": "osaka",
 		"libraries": {},
@@ -51,12 +51,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/DemoScoringNodes.sol": {
-			"keccak256": "0xaafaa898d74f74775b2e54e971953b90338cae8b3f219a749bbcfab23a77342a",
+		"contracts/MockNode.sol": {
+			"keccak256": "0xb9abbc8d7b1bd777151a66fc3a4a5b356b7249144a5d9a67f32d8677207a042e",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://3cf5f8d920a514dc5022c0688dd4ee252c971e65010a02135e8853122e452a56",
-				"dweb:/ipfs/Qme88PWKvmuSQBnXNRwJEzEmsSHwvwTg3ZPeHeCuxa5gUn"
+				"bzz-raw://e2de3e1edb75bf873bcb9877159ec5e4ccf8da05c4516f584d468b528bc23be7",
+				"dweb:/ipfs/QmctKTVKSRMjhfAACooFS6a36aBwax2T1PUUkCyBTocztc"
 			]
 		}
 	},

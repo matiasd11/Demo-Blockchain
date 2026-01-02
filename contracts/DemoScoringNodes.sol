@@ -3,7 +3,7 @@
 pragma solidity >=0.8.2 <0.9.0;
 
 interface INodeScoring {
-    function requestScore(bytes32 _requestId, uint256 _coordX, uint256 _coordY) external;
+    function requestScore(bytes32 _requestId, uint256 _coordX, uint256 _coordY, address _mainNode) external;
 }
 
 interface IMainNode {
@@ -50,7 +50,7 @@ contract DemoScoringNodes is IMainNode{
 
         // Llamar a cada nodo (asincrónico - no espera respuesta)
         for (uint256 i = 0; i < _nodes.length; i++) {
-            INodeScoring(_nodes[i]).requestScore(requestId, _coordX, _coordY);
+            INodeScoring(_nodes[i]).requestScore(requestId, _coordX, _coordY, address(this));
         }
 
         emit ScoringRequested(requestId, _coordX, _coordY, _nodes.length);

@@ -1,0 +1,69 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_requestId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_coordX",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_coordY",
+						"type": "uint256"
+					}
+				],
+				"name": "requestScore",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/DemoScoringNodes.sol": "INodeScoring"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/DemoScoringNodes.sol": {
+			"keccak256": "0xe45d493878fef244921c2433c26f4971a2a6eb0332b5c8355d2d4a61ebf2256c",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://2c9c9b373461084b529b756c29edb2b03a782484ddbcfabdda0c020a75671e0e",
+				"dweb:/ipfs/QmXMWJdCqLxA6NPp45UoR8iWKwzm9nqVf8n4jmCeJi2rvq"
+			]
+		}
+	},
+	"version": 1
+}

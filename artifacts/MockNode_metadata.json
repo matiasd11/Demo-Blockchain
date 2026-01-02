@@ -1,0 +1,119 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_demoContractAddress",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "demoContract",
+				"outputs": [
+					{
+						"internalType": "contract IDemoScoringNodes",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_requestId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_coordX",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_coordY",
+						"type": "uint256"
+					}
+				],
+				"name": "requestScore",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "score",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_newScore",
+						"type": "uint256"
+					}
+				],
+				"name": "setScore",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/MockNode.sol": "MockNode"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/MockNode.sol": {
+			"keccak256": "0xace9b95b807fc1d597835d3d22a5bc9a12bb9daead290924b075762f18ad51be",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://08ea25841bd70f0fcf80e47c26a3384addc2109148dcbccd0568e08905fc9764",
+				"dweb:/ipfs/QmZxhEHjCvb9uv1Nt4qwiNmzB3pRHctCNxBcnW6ENv9aq7"
+			]
+		}
+	},
+	"version": 1
+}

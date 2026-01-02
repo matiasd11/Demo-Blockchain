@@ -6,7 +6,11 @@ interface INodeScoring {
     function requestScore(bytes32 _requestId, uint256 _coordX, uint256 _coordY) external;
 }
 
-contract DemoScoringNodes {
+interface IMainNode {
+     function submitScore(bytes32 _requestId, uint256 score) external;
+}
+
+contract DemoScoringNodes is IMainNode{
 
     struct ScoringRequest {
         uint256 coordX;

@@ -14,16 +14,11 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "_coordX",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_coordY",
+						"name": "score",
 						"type": "uint256"
 					}
 				],
-				"name": "requestScore",
+				"name": "submitScore",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -42,7 +37,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/DemoScoringNodes.sol": "INodeScoring"
+			"contracts/DemoScoringNodes.sol": "IMainNode"
 		},
 		"evmVersion": "osaka",
 		"libraries": {},

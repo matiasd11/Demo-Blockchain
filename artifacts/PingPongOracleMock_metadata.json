@@ -231,50 +231,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "string",
-						"name": "_fetch",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "_avg",
-						"type": "string"
-					}
-				],
-				"name": "setScripts",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "sourceAverage",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "sourceFetch",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "uint256",
 						"name": "_projectId",
 						"type": "uint256"
@@ -441,11 +397,11 @@
 			]
 		},
 		"contracts/PingPongOracle.sol": {
-			"keccak256": "0x7268875079777d670d8212ef4b9db3bc34d5bf7aa5a827b226cfd9eb55d1504e",
+			"keccak256": "0x713b2ef60fcf4c5b9d3d77bb367c9591f63e55bd4850134345250507ccb0782e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4f072091152acf0399604969b3cd306427d2665af3cbffa42a8bc6e8b659cb1a",
-				"dweb:/ipfs/QmVoB8yx5p5VwUpGPsCkHkePLYqNGkCRjEzLmRa5S4F7mM"
+				"bzz-raw://4b8a72bb8fe20997b12700018ced2ff6d60275d6eda4327df699a0b1ce5559cb",
+				"dweb:/ipfs/QmT8gQmotHVEztaQT54t4eQ1SEtKoDopY2KqLGsXVWeHrX"
 			]
 		}
 	},

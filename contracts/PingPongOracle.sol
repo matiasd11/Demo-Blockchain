@@ -24,9 +24,19 @@ contract PingPongOracleMock is FunctionsClient {
         "https://api-mock-render.onrender.com/score"
     ];
 
-    // --- CÓDIGOS JS ---
-    string public sourceFetch;     // JS para llamar a la API
-    string public sourceAverage;   // JS para calcular el promedio
+    // 1. Script para buscar el dato (Fetch)
+    string constant sourceFetch = 
+        "const url = args[0];"
+        "const apiResponse = await Functions.makeHttpRequest({ url: url, method: 'GET' });"
+        "if (apiResponse.error) { throw Error('Fallo API'); }"
+        "return Functions.encodeUint256(apiResponse.data.score);";
+
+    // 2. Script para calcular el promedio (Average)
+    string constant sourceAverage = 
+        "const scores = args.map(s => parseInt(s));"
+        "const sum = scores.reduce((a, b) => a + b, 0);"
+        "const avg = Math.round(sum / scores.length);"
+        "return Functions.encodeUint256(avg);";
 
     // --- ESTADO ---
     enum RequestType { FETCH, CALCULATE }
@@ -135,10 +145,5 @@ contract PingPongOracleMock is FunctionsClient {
         pendingRequests[requestId] = RequestContext(_projectId, RequestType.CALCULATE);
         
         emit CalculationRequested(_projectId, requestId);
-    }
-
-    function setScripts(string memory _fetch, string memory _avg) external {
-        sourceFetch = _fetch;
-        sourceAverage = _avg;
     }
 }

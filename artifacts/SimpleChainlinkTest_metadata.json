@@ -1,0 +1,293 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint64",
+						"name": "_subId",
+						"type": "uint64"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "EmptySource",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "NoInlineSecrets",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "OnlyRouterCanFulfill",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "id",
+						"type": "bytes32"
+					}
+				],
+				"name": "RequestFulfilled",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "id",
+						"type": "bytes32"
+					}
+				],
+				"name": "RequestSent",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "requestId",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "result",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "err",
+						"type": "bytes"
+					}
+				],
+				"name": "ResponseReceived",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "gasLimit",
+				"outputs": [
+					{
+						"internalType": "uint32",
+						"name": "",
+						"type": "uint32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "requestId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes",
+						"name": "response",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "err",
+						"type": "bytes"
+					}
+				],
+				"name": "handleOracleFulfillment",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "lastError",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "lastScore",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "status",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "subscriptionId",
+				"outputs": [
+					{
+						"internalType": "uint64",
+						"name": "",
+						"type": "uint64"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testConnection",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"handleOracleFulfillment(bytes32,bytes,bytes)": {
+					"details": "Either response or error parameter will be set, but never both.",
+					"params": {
+						"err": "Aggregated error either from the request's source code or from the execution pipeline.",
+						"requestId": "The requestId returned by FunctionsClient.sendRequest().",
+						"response": "Aggregated response from the request's source code."
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"handleOracleFulfillment(bytes32,bytes,bytes)": {
+					"notice": "Chainlink Functions response handler called by the Functions Router during fullilment from the designated transmitter node in an OCR round."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/SimpleChainlinkTest.sol": "SimpleChainlinkTest"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@chainlink/contracts/src/v0.8/functions/v1_0_0/FunctionsClient.sol": {
+			"keccak256": "0xa2ba29211e017619070bc6ea22a2b6edfe6826423e789d225d1da5500f775ce1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0c33aba5ec5d8e723e329330c0bec7d357ee09a63fabba089002507524d86ec4",
+				"dweb:/ipfs/QmbU52cedj1HeNTDoB8TYFteJqD2MuqDr7uykxU99ii3v2"
+			]
+		},
+		"@chainlink/contracts/src/v0.8/functions/v1_0_0/interfaces/IFunctionsClient.sol": {
+			"keccak256": "0x6117b82e7c4eec44ce557b0fc8bc1ac5f49e5d160ac6d4485452d6aafdd762ff",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0e0828ef423afef9f6f709bb173a7e3991fe555bf9337a4941d65da525ac4ad3",
+				"dweb:/ipfs/QmXz1jHRZFTqdnNxP2tffVQ9NnUE1xgtBMRWuyUrTVY4pm"
+			]
+		},
+		"@chainlink/contracts/src/v0.8/functions/v1_0_0/interfaces/IFunctionsRouter.sol": {
+			"keccak256": "0x730b11b5047f167f4102fee26826ac491081152614a59a3d624a9f971a926147",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4844ee8b14d4d61a643abf5faeee3bfcff29bbe1a1ca10c53e4819adabefbe1c",
+				"dweb:/ipfs/QmSkexNpR7inp9Uk25TXr7d7xogaFMTQVhdze6FVy5UHh4"
+			]
+		},
+		"@chainlink/contracts/src/v0.8/functions/v1_0_0/libraries/FunctionsRequest.sol": {
+			"keccak256": "0x3058b1c78c6c950e67d7731974de3e11e0d1f850522a0c125dff4955a35ed592",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://41dd4d86e23b812e277aca291a57967d3a6e466f1aab5b531a88c0f8bdf7cd2e",
+				"dweb:/ipfs/QmPGpwLTocwG2Juct6muRs2r56cF1VZxsNSkyVcBWDJBwf"
+			]
+		},
+		"@chainlink/contracts/src/v0.8/functions/v1_0_0/libraries/FunctionsResponse.sol": {
+			"keccak256": "0xfdc7495dddbabd725370e4030b602d8ec59889caccdc4bf97874e7487c229c30",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4d63c3c80718c88cf6431a28afb2156eb68dec633a184049468931945fd95cc7",
+				"dweb:/ipfs/QmdUBsz6329m9pUbBkzqguco4ciR1EDwtbhM4VnbeZSoDE"
+			]
+		},
+		"@chainlink/contracts/src/v0.8/vendor/@ensdomains/buffer/v0.1.0/Buffer.sol": {
+			"keccak256": "0x0d86b367813922094e02594a406ba89f5e97d3d74ec2ce3c4032566840e302b0",
+			"license": "BSD-2-Clause",
+			"urls": [
+				"bzz-raw://2c65ceaef4ce70e8638275da75f4c384d4e404d588fcac404028da7e634c81a8",
+				"dweb:/ipfs/QmV3vMmjseNombFaRGw7K4PgDj6rrWcEzNY9S5jtLAdJqG"
+			]
+		},
+		"@chainlink/contracts/src/v0.8/vendor/solidity-cborutils/v2.0.0/CBOR.sol": {
+			"keccak256": "0xdecf04203502670ac72ba466c75e4f87f4419907365005f0d73e7d07ee3e5715",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://39c9937cf45f840cf3a45a83dec3719dbd2f1d71198088db48b909ec656f77dd",
+				"dweb:/ipfs/QmQx9mEREaFyJGC2KpqWBqBV712NY8vUBrcqTR4RdVNBiu"
+			]
+		},
+		"contracts/SimpleChainlinkTest.sol": {
+			"keccak256": "0x97c9153497ece199ec47f66c7bf1aa33b3499abf3782e30a66f6969bb477a608",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5c027e97e181366d163c397abbc823782c49f5b1845867e229de540d7f9bfce8",
+				"dweb:/ipfs/QmUYzURHZ8Kz6zcVtA7PakWiaUXKBroLemHmGFePgpuhJQ"
+			]
+		}
+	},
+	"version": 1
+}

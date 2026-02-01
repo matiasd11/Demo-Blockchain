@@ -5,26 +5,27 @@ import {FunctionsClient} from "@chainlink/contracts/src/v0.8/functions/v1_0_0/Fu
 import {FunctionsRequest} from "@chainlink/contracts/src/v0.8/functions/v1_0_0/libraries/FunctionsRequest.sol";
 import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
 
-contract PingPongOracle is FunctionsClient {
+contract PingPongOracleMock is FunctionsClient {
     using FunctionsRequest for FunctionsRequest.Request;
     using Strings for uint256;
 
-    // --- CONFIGURACIÓN (Sepolia) ---
+    // --- CONFIGURACIÓN SEPOLIA (Correcta) ---
     address router = 0xb83E47C2bC239B3bf370bc41e1459A34b41238D0;
     bytes32 donId = 0x66756e2d657468657265756d2d7365706f6c69612d3100000000000000000000;
-    uint64 subscriptionId;
-    uint32 gasLimit = 300000;
+    
+    uint64 public subscriptionId;
+    uint32 public gasLimit = 300000;
 
-    // --- FUENTES ---
-    // Las distintas IAs que consultaremos
+    // --- FUENTES (TU MOCK API) ---
+    // Repetimos la URL para simular 3 fuentes distintas y probar el promedio
     string[] public apiUrls = [
-        "https://api.ia-1.com/score",
-        "https://api.ia-2.com/score",
-        "https://api.ia-3.com/score"
+        "https://api-mock-render.onrender.com/score",
+        "https://api-mock-render.onrender.com/score",
+        "https://api-mock-render.onrender.com/score"
     ];
 
     // --- CÓDIGOS JS ---
-    string public sourceFetch;     // JS para ir a buscar el dato
+    string public sourceFetch;     // JS para llamar a la API
     string public sourceAverage;   // JS para calcular el promedio
 
     // --- ESTADO ---
@@ -36,8 +37,8 @@ contract PingPongOracle is FunctionsClient {
     }
 
     struct Round {
-        uint256[] rawScores;    // Datos crudos recolectados [80, 90, 100]
-        uint256 finalAverage;   // El resultado que devuelve Chainlink después
+        uint256[] rawScores;    // Debería llenarse con [87, 87, 87]
+        uint256 finalAverage;   // Debería ser 87
         bool isComplete;
     }
 
@@ -54,94 +55,88 @@ contract PingPongOracle is FunctionsClient {
     }
 
     // ---------------------------------------------------------
-    // PASO 1: DISPARAR LAS CONSULTAS INDIVIDUALES
+    // PASO 1: DISPARAR LAS CONSULTAS (CORREGIDO)
     // ---------------------------------------------------------
     function startAudit(uint256 _projectId, string[] memory _coords) external {
         currentRound[_projectId]++;
         uint256 roundId = currentRound[_projectId];
         
-        // Lanzamos una solicitud por cada API
+        // Reiniciamos datos de la ronda
+        delete rounds[_projectId][roundId];
+
         for (uint i = 0; i < apiUrls.length; i++) {
             FunctionsRequest.Request memory req;
             req.initializeRequestForInlineJavaScript(sourceFetch);
             
-            // Pasamos URL y Coordenadas a este nodo específico
+            // CORRECCIÓN: Ahora el array es de tamaño 3 para incluir coords
             string[] memory args = new string[](3);
-            args[0] = apiUrls[i];
-            args[1] = _coords[0];
-            args[2] = _coords[1];
+            args[0] = apiUrls[i]; // URL
+            args[1] = _coords[0]; // Latitud (Ahora sí usamos la variable)
+            args[2] = _coords[1]; // Longitud (Ahora sí usamos la variable)
+            
             req.setArgs(args);
 
             bytes32 requestId = _sendRequest(req.encodeCBOR(), subscriptionId, gasLimit, donId);
             
-            // Marcamos que esta solicitud es de TIPO FETCH
             pendingRequests[requestId] = RequestContext(_projectId, RequestType.FETCH);
         }
     }
 
     // ---------------------------------------------------------
-    // CALLBACK CENTRAL (MANEJA TODO)
+    // CALLBACK CENTRAL
     // ---------------------------------------------------------
     function fulfillRequest(bytes32 requestId, bytes memory response, bytes memory err) internal override {
-        if (err.length > 0) return; // Manejo de errores
+        if (err.length > 0) return; 
 
         RequestContext memory ctx = pendingRequests[requestId];
         uint256 projectId = ctx.projectId;
         uint256 roundId = currentRound[projectId];
         Round storage round = rounds[projectId][roundId];
 
-        // --- ESCENARIO A: LLEGA UN DATO DE UNA IA ---
+        // --- A: Recibimos un 87 de la API ---
         if (ctx.rType == RequestType.FETCH) {
             uint256 score = abi.decode(response, (uint256));
             
-            // Guardamos el dato crudo (Transparencia)
             round.rawScores.push(score);
-            emit DataCollected(projectId, score, "IA_Source");
+            emit DataCollected(projectId, score, "MockAPI");
 
-            // LOGICA AUTOMÁTICA: ¿Ya llegaron todos los datos?
-            // Si tenemos 3 respuestas de las 3 APIs, activamos el cálculo
+            // Si tenemos 3 respuestas, pedimos el cálculo
             if (round.rawScores.length == apiUrls.length) {
                 _requestCalculationFromChainlink(projectId, round.rawScores);
             }
         } 
         
-        // --- ESCENARIO B: LLEGA EL PROMEDIO CALCULADO ---
+        // --- B: Recibimos el Promedio Final ---
         else if (ctx.rType == RequestType.CALCULATE) {
             uint256 average = abi.decode(response, (uint256));
             
-            // Guardamos solo el resultado final
             round.finalAverage = average;
             round.isComplete = true;
             
             emit RoundFinalized(projectId, average);
-            // Aquí podrías llamar a la función de cambio de fase
         }
     }
 
     // ---------------------------------------------------------
-    // PASO 2: ENVIAR DATOS A CHAINLINK PARA CALCULAR
+    // PASO 2: CÁLCULO
     // ---------------------------------------------------------
     function _requestCalculationFromChainlink(uint256 _projectId, uint256[] memory _scores) internal {
         FunctionsRequest.Request memory req;
         req.initializeRequestForInlineJavaScript(sourceAverage);
 
-        // Convertimos el array de uint a string[] para pasarlo como args
         string[] memory args = new string[](_scores.length);
         for(uint i = 0; i < _scores.length; i++) {
             args[i] = _scores[i].toString();
         }
         req.setArgs(args);
 
-        // Enviamos la solicitud de CÁLCULO
         bytes32 requestId = _sendRequest(req.encodeCBOR(), subscriptionId, gasLimit, donId);
         
-        // Marcamos que esta solicitud es de TIPO CALCULATE
         pendingRequests[requestId] = RequestContext(_projectId, RequestType.CALCULATE);
         
         emit CalculationRequested(_projectId, requestId);
     }
 
-    // Configuración de scripts
     function setScripts(string memory _fetch, string memory _avg) external {
         sourceFetch = _fetch;
         sourceAverage = _avg;
